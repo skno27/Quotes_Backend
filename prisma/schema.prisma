@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  username String  @unique
+  name     String
+  verified Boolean @default(true)
+
+  quotes      Quote[]
+  comments    Comment[]
+  quotesLiked Quote[]   @relation("QuoteLikes")
+
+  roles Roles[]
+}
+
+enum Roles {
+  ADMIN
+}
+
+model Quote {
+  id        Int      @id @default(autoincrement())
+  body      String
+  color     Color
+  createdAt DateTime @default(now())
+
+  author   Author @relation(fields: [authorId], references: [id])
+  uploader User   @relation(fields: [userId], references: [id])
+  userId   Int
+  authorId Int
+
+  tags     Tag[]
+  comments Comment[]
+  likes    User[]    @relation("QuoteLikes")
+}
+
+model Author {
+  id           Int     @id @default(autoincrement())
+  name         String
+  authorQuotes Quote[]
+}
+
+enum Color {
+  RED
+  GREEN
+  BLUE
+  YELLOW
+  ORANGE
+  PURPLE
+  BLACK
+  WHITE
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  quoteId   Int
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  author User  @relation(fields: [userId], references: [id])
+  quote  Quote @relation(fields: [quoteId], references: [id])
+}
+
+model Tag {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  quotes Quote[]
+}
