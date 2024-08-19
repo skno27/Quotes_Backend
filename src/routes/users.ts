@@ -1,5 +1,5 @@
 import Express from "express";
-import * as usersController from "./controllers/users.js";
+import * as usersController from "../controllers/users.js";
 
 import * as validation from "../middleware/validation.js";
 import { isAdmin } from "../middleware/loginAuth.js";

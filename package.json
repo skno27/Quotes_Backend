@@ -7,16 +7,14 @@
   "scripts": {
     "build": "tsc -w",
     "start": "node dist/app.js",
-    "dev": "nodemon --files --ext ts,js,json --exec 'node --no-warnings --loader ts-node/esm src/app.ts'"
-  },
-  "prisma": {
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node --loader ts-node/esm' src/app.ts",
     "seed": "node --loader ts-node/esm src/seed.ts"
   },
   "author": "Deshon Morgan",
   "license": "ISC",
   "dependencies": {
     "@apideck/better-ajv-errors": "^0.3.6",
-    "@prisma/client": "^5.11.0",
+    "@prisma/client": "^5.18.0",
     "@types/bcrypt": "^5.0.2",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
@@ -31,6 +29,11 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/node": "^22.1.0",
+    "nodemon": "^3.0.2",
+    "prisma": "^5.18.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
 }
