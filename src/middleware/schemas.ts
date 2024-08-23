@@ -34,6 +34,7 @@ function containsSpecial(value: string): boolean {
   return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value);
 }
 
+// for creating an account
 export const Account = User.pick({
   name: true,
   username: true,
