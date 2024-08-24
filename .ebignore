@@ -1,7 +1,5 @@
 node_modules
-package-lock.json
 .env
 .vscode
 tsconfig.json
-
-### i think aws cli needs to be re-config'd . profile might be using invalid user or something like that, idk.
+src

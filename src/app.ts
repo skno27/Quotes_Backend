@@ -32,7 +32,17 @@ app.use(logging.logRequest); // custom logging
 
 // call base route for testing connection
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the Quotes API" });
+  res.json({
+    message: `Welcome to the Quotes API. New version successfully deployed!
+    Please visit the /info route in order to see how to use this application
+    `,
+  });
+});
+
+app.get("/info", (req, res) => {
+  res.json({
+    message: `Info route HIT -- New Deployment successful`,
+  });
 });
 
 // routes
