@@ -17,17 +17,19 @@ export const getUser: RequestHandler = async (req, res, next) => {
   const id = Number.parseInt(req.params.id);
   const user = await prisma.user.findUnique({
     where: { id: id },
+    include: { quotes: true },
   });
 
   if (!user) {
     return next(new Error("404"));
   }
   console.log("User Found!");
-  res.send({ user });
+  res.send({ user, quotes: user.quotes });
 };
 
 export const updateUser: RequestHandler = async (req, res, next) => {
   const userId = req.user.id;
+  if (!userId) return;
   //   make sure user isnt assigning itself new roles
   delete req.body.roles;
   console.log("from updateUser", req.user);
@@ -46,6 +48,7 @@ export const updateUser: RequestHandler = async (req, res, next) => {
 
 export const deleteUser: RequestHandler = async (req, res) => {
   const userId = req.user.id;
+  if (!userId) return;
   const result = await prisma.user.delete({
     where: { id: userId },
   });
@@ -56,6 +59,7 @@ export const deleteUser: RequestHandler = async (req, res) => {
 
 export const adminDeleteUser: RequestHandler = async (req, res) => {
   const userId = parseInt(req.params.id);
+  if (!userId) return;
   const result = await prisma.user.delete({
     where: { id: userId },
   });

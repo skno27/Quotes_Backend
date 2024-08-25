@@ -19,7 +19,7 @@ app.use(express.json()); // express json data processing protocols
 
 // configure cors
 const corsOptions = {
-  origin: "*",
+  origin: "https://quotes-social.vercel.app",
   methods: "GET, POST, PATCH, DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -46,10 +46,11 @@ app.get("/info", (req, res) => {
 });
 
 // routes
+// app.use("/v1/social", socialRouter);
 app.use("/v1/auth", authRouter);
+app.use("/v1/users", usersRouter);
 app.use(authenticated); // auth middleware
 
-app.use("/v1/users", usersRouter);
 app.use("/v1/quotes", quotesRouter);
 app.use("/v1/comments", commentsRouter);
 
