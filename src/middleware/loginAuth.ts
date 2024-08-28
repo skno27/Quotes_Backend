@@ -10,7 +10,7 @@ const auth: RequestHandler = (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log("Roles:", decoded.roles);
+    // console.log("Decoded:", decoded.roles);
     req.user = decoded;
 
     next();

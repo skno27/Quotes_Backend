@@ -1,5 +1,6 @@
-import pr from "@prisma/client";
-const { Prisma, PrismaClient } = pr;
+import { PrismaClient } from "@prisma/client";
+import env from "dotenv";
+env.config();
 
 let prisma = new PrismaClient();
 

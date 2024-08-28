@@ -20,6 +20,7 @@ export const validateParamId: RequestHandler = (req, res, next) => {
 export const validateBody =
   (schema: ZodType<any>): RequestHandler =>
   (req, res, next) => {
+    console.log("Color:", req.body.color);
     const result = schema.safeParse(req.body);
 
     if (!result.success) {
@@ -28,6 +29,17 @@ export const validateBody =
 
     next();
   };
+
+import { Color } from "@prisma/client";
+
+// set default color if not provided
+export const setDefaultColor: RequestHandler = (req, res, next) => {
+  if (req.body.color === undefined) {
+    req.body.color = Color.RED;
+  }
+
+  next();
+};
 
 export const createUser = validateBody(schemas.Account);
 export const login = validateBody(schemas.Login);

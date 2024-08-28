@@ -15,6 +15,7 @@ router.delete("/:id", isAdmin, usersController.adminDeleteUser);
 
 router.get("/:id/quotes", usersController.getUserQuotes);
 router.get("/:id/quotes-liked", usersController.getUserLikedQuotes);
+// ✅
 // dont think this one is needed, no following relationship at this time // router.get("/:id/quotes-followed", usersController.getUserFollowedPosts);
 
 export default router;

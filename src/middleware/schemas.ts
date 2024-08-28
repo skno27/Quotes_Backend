@@ -1,7 +1,7 @@
 import z from "zod";
-import pr, { Color } from "@prisma/client";
+import { Roles, Color } from "@prisma/client";
 
-const { Roles } = pr;
+// const { Roles } = pr;
 
 const userLazy: z.ZodLazy<any> = z.lazy(() => User);
 const quoteLazy: z.ZodLazy<any> = z.lazy(() => Quote);
@@ -70,16 +70,17 @@ export const UserUpdate = User.partial()
 // Quote Schema
 export const Quote = z.object({
   id: z.number().int().nonnegative().optional(),
-  body: z.string().min(5),
-  color: z.nativeEnum(Color).default("RED"),
+  body: z.string().min(2),
+  color: z.nativeEnum(Color),
+  date: z.date().optional(),
   createdAt: z.date().optional(),
   userId: z.number().int().nonnegative().optional(),
-  authorId: z.number().int().nonnegative().optional(),
   tags: z.string().array().optional(),
-  comments: z.array(commentLazy).optional(),
   likes: z.array(userLazy).optional(),
-  uploader: userLazy.optional(),
+  authorId: z.number().int().nonnegative().optional(),
   author: z.string().optional(),
+  uploader: userLazy.optional(),
+  comments: z.array(commentLazy).optional(),
 });
 
 export const QuoteUpdate = Quote.pick({
