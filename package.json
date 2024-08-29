@@ -10,7 +10,7 @@
     "start": "node dist/app.js"
   },
   "prisma": {
-    "seed": "node dist/seed.js"
+    "seed": "node dist/admin/seed.js"
   },
   "author": "Deshon Morgan",
   "license": "ISC",
