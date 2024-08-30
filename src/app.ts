@@ -11,6 +11,7 @@ import errors from "./middleware/errors.js";
 import xss from "./middleware/xss.js";
 import notFound from "./middleware/notFound.js";
 import authenticated from "./middleware/loginAuth.js";
+import { cacheMiddleware } from "./middleware/redis.js";
 
 const app = express();
 const port = 8080;
@@ -29,6 +30,8 @@ app.use(cors(corsOptions));
 
 app.use(xss); // sanitize everything !
 app.use(logging.logRequest); // custom logging
+
+app.use(cacheMiddleware);
 
 // call base route for testing connection
 app.get("/", (req, res) => {
