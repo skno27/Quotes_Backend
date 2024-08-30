@@ -20,7 +20,6 @@ export const validateParamId: RequestHandler = (req, res, next) => {
 export const validateBody =
   (schema: ZodType<any>): RequestHandler =>
   (req, res, next) => {
-    console.log("Color:", req.body.color);
     const result = schema.safeParse(req.body);
 
     if (!result.success) {

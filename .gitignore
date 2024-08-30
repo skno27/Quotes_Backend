@@ -10,3 +10,4 @@ dist
 .DS_Store
 src/seed.ts
 admin
+admin/seed.ts
