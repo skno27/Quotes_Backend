@@ -1,9 +1,5 @@
 import { RequestHandler } from "express";
-import { createClient } from "redis";
-
-const redisClient = createClient({
-  url: "redis://localhost:6379", // or whatever the server url is
-});
+import redisClient from "../redis.js";
 
 redisClient.on("error", (err) => console.log("Redis Client Error", err));
 
@@ -30,7 +26,6 @@ export const cacheMiddleware: RequestHandler = async (req, res, next) => {
         console.log("Cache hit:", key);
         return res.json(JSON.parse(cachedData));
       }
-
       console.log("Cache miss:", key);
     } catch (error) {
       console.error("Redis error:", error);
