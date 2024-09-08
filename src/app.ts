@@ -36,8 +36,7 @@ app.use(cacheMiddleware);
 // call base route for testing connection
 app.get("/", (req, res) => {
   res.json({
-    message: `Welcome to the Quotes API. New version successfully deployed!
-    Please visit the /info route in order to see how to use this application
+    message: `Welcome to the Quotes API. New version successfully deployed! -- Please visit the /info route in order to see how to use this application
     `,
   });
 });
