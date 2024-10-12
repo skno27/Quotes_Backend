@@ -11,3 +11,5 @@ dist
 src/seed.ts
 admin
 admin/seed.ts
+
+.ebignore
