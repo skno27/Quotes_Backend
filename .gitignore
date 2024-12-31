@@ -13,3 +13,4 @@ admin
 admin/seed.ts
 
 .ebignore
+dump.rdb
