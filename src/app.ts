@@ -20,7 +20,8 @@ app.use(express.json()); // express json data processing protocols
 
 // configure cors
 const corsOptions = {
-  origin: "quotesocial.com",
+  // origin: "quotesocial.com",
+  origin: "quotesfrontend-imk9.onrender.com",
   methods: "GET, POST, PATCH, DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
