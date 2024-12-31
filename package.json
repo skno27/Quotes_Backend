@@ -7,7 +7,8 @@
   "scripts": {
     "buildw": "tsc -w",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "dev": "nodemon dist/app.js"
   },
   "prisma": {
     "seed": "node dist/admin/wipe.js"

@@ -31,7 +31,7 @@ app.use(cors(corsOptions));
 app.use(xss); // sanitize everything !
 app.use(logging.logRequest); // custom logging
 
-app.use(cacheMiddleware);
+// app.use(cacheMiddleware);
 
 // call base route for testing connection
 app.get("/", (req, res) => {
